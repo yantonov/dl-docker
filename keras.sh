@@ -14,7 +14,7 @@ docker run -i -t \
            -v "${DATA}:/data" \
            --env KERAS_BACKEND=${KERAS_BACKEND} \
            --rm \
-           keras \
+           yantonov/keras \
            /bin/bash -c \
            "jupyter notebook \
        --notebook-dir=/src/workspace \

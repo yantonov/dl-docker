@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker image rm "keras"
+docker image rm "yantonov/keras"

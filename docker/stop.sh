@@ -1,6 +1,6 @@
 #!/bin/sh
 
-IMAGE="keras"
+IMAGE="yantonov/keras"
 
 IMAGE_ID=$(docker ps -a --filter "ancestor=${IMAGE}" --format '{{.ID}}' | head -n 1 || echo "")
 
