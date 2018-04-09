@@ -1,6 +1,6 @@
-Scripts to simplify use of keras through docker image.
+Scripts to simplify use of keras through [docker image](https://github.com/keras-team/keras/tree/master/docker).
 
-docker directory contains scripts to build, remove image.
+Docker directory contains scripts to build, remove constructed image.
 
 Usage:
 add this repository to PATH and use keras.sh
