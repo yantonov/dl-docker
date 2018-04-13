@@ -9,7 +9,7 @@ CUDA_VERSION?=9.0
 CUDNN_VERSION?=7
 SRC?=$(shell pwd)
 
-IMAGE="yantonov/keras"
+IMAGE=yantonov/keras
 
 build:
 	docker build \
