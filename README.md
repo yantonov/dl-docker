@@ -11,4 +11,4 @@ Docker file provides:
 2. [anaconda](https://anaconda.org/anaconda/python)
 3. [jupiter](http://jupyter.org/)
 4. [tensorflow](https://www.tensorflow.org) with cpu support
-5. [tensorflow](https://github.com/keras-team/keras)
+5. [keras](https://github.com/keras-team/keras)
