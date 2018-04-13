@@ -1,29 +1,17 @@
-ARG cuda_version=9.0
-ARG cudnn_version=7
-FROM nvidia/cuda:${cuda_version}-cudnn${cudnn_version}-devel
+FROM continuumio/anaconda3
 
-# Install system packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-      bzip2 \
-      g++ \
-      git \
-      graphviz \
-      libgl1-mesa-glx \
-      libhdf5-dev \
-      openmpi-bin \
-      wget && \
-    rm -rf /var/lib/apt/lists/*
+MAINTAINER Yury Antonov <yantonov@yandex.ru>
 
-# Install conda
+RUN /opt/conda/bin/pip install --upgrade pip && \
+    /opt/conda/bin/conda update conda -y && \
+    /opt/conda/bin/conda install jupyter -y
+
 ENV CONDA_DIR /opt/conda
 ENV PATH $CONDA_DIR/bin:$PATH
 
-RUN wget --quiet --no-check-certificate https://repo.continuum.io/archive/Anaconda3-5.1.0-Linux-x86_64.sh -O ~/anaconda.sh && \
-    /bin/bash ~/anaconda.sh -b -p /opt/conda && \
-    rm ~/anaconda.sh && \
-    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
-    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
-    echo "conda activate base" >> ~/.bashrc
+# install tensorflow
+RUN /opt/conda/bin/pip install --ignore-installed --upgrade \
+    https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.7.0-cp36-cp36m-linux_x86_64.whl
 
 # Install Python packages and keras
 ENV NB_USER keras
@@ -36,39 +24,10 @@ RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
 
 USER $NB_USER
 
-ARG python_version=3.6
-
-RUN conda install -y python=${python_version} && \
-    pip install --upgrade pip && \
-    pip install \
-      sklearn_pandas \
-      tensorflow-gpu && \
-    pip install https://cntk.ai/PythonWheel/GPU/cntk-2.1-cp36-cp36m-linux_x86_64.whl && \
-    conda install \
-      bcolz \
-      h5py \
-      matplotlib \
-      mkl \
-      nose \
-      notebook \
-      Pillow \
-      pandas \
-      pygpu \
-      pyyaml \
-      scikit-learn \
-      six \
-      theano && \
-    git clone git://github.com/keras-team/keras.git /src && pip install -e /src[tests] && \
-    pip install git+git://github.com/keras-team/keras.git && \
-    conda clean -yt
-
-ADD theanorc /home/keras/.theanorc
-
-ENV PYTHONPATH='/src/:$PYTHONPATH'
+RUN /opt/conda/bin/pip install keras
 
 WORKDIR /src
 
 EXPOSE 8888
 
-CMD jupyter notebook --port=8888 --ip=0.0.0.0
-
+CMD /opt/conda/bin/jupyter notebook --port=8888 --ip='*' --no-browser --notebook-dir=/src
