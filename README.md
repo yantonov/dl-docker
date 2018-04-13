@@ -1,4 +1,4 @@
-Scripts to simplify use of keras through [docker image](https://github.com/keras-team/keras/tree/master/docker).
+Scripts to simplify use of keras through docker image.
 
 Docker directory contains scripts to build, get termiall access, remove constructed image.
 
