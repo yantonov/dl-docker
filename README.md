@@ -6,5 +6,9 @@ Usage:
 Add this repository to PATH and use keras.sh.
 Current working directory will be mounted automatically.
 
-Links:
-[Keras](https://github.com/keras-team/keras)
+Docker file provides:
+1. python 3
+2. [anaconda](https://anaconda.org/anaconda/python)
+3. [jupiter](http://jupyter.org/)
+4. [tensorflow](https://www.tensorflow.org) with cpu support
+5. [tensorflow](https://github.com/keras-team/keras)
