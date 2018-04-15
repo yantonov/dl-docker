@@ -1,6 +1,6 @@
 Scripts to simplify use of keras through docker image.
 
-Docker directory contains scripts to build, get termiall access, remove constructed image.
+Docker directory contains scripts to build, run, get terminal access, remove constructed image.
 
 Usage:
 Add this repository to PATH and use keras.sh.
