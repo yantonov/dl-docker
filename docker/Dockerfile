@@ -26,8 +26,6 @@ USER $NB_USER
 
 RUN /opt/conda/bin/pip install keras
 
-WORKDIR /src
-
 EXPOSE 8888
 
 CMD /opt/conda/bin/jupyter notebook --port=8888 --ip='*' --no-browser --notebook-dir=/src
