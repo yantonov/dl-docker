@@ -39,5 +39,10 @@ stop:
 pull:
 	docker pull "$(IMAGE)"
 
+push:
+	docker login
+	docker push "$(IMAGE)"
+
+
 uninstall:
 	docker image rm "$(IMAGE)"
