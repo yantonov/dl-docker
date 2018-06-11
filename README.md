@@ -8,7 +8,7 @@ Current working directory will be mounted automatically.
 
 Docker file provides:
 1. [python 3](https://www.python.org/download/releases/3.0/)
-2. [anaconda](https://anaconda.org/anaconda/python) 3.4.1 full installation
+2. [anaconda](https://anaconda.org/anaconda/python) 5.2.0
 3. [jupiter](http://jupyter.org/)
-4. [tensorflow](https://www.tensorflow.org) 1.7 with cpu support
-5. [keras](https://github.com/keras-team/keras) 2.1.5
+4. [tensorflow](https://www.tensorflow.org) 1.8 with cpu support
+5. [keras](https://github.com/keras-team/keras) 2.2

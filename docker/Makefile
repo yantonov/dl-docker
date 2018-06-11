@@ -10,6 +10,7 @@ IMAGE=yantonov/keras
 
 build:
 	docker build \
+		--no-cache \
 		-t $(IMAGE) \
 		-f $(DOCKER_FILE) .
 
