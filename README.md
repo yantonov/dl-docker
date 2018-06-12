@@ -1,10 +1,10 @@
-Scripts to simplify use of keras through docker image.
+Scripts are aimed to simplify using keras (with cpu support) through docker image.
 
 Docker directory contains scripts to build, run, get terminal access, remove constructed image.
 
 Usage:
 Add this repository to PATH and use keras.sh.
-Current working directory will be mounted automatically.
+Current directory will be mounted automatically.
 
 Docker file provides:
 1. [python 3](https://www.python.org/download/releases/3.0/)
