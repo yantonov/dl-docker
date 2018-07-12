@@ -6,7 +6,7 @@ DOCKER_FILE=Dockerfile
 BACKEND=tensorflow
 SRC?=$(shell pwd)
 
-IMAGE=yantonov/keras
+IMAGE=yantonov/dl-cpu
 
 build:
 	docker build \

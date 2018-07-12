@@ -12,3 +12,6 @@ Docker file provides:
 3. [jupiter](http://jupyter.org/)
 4. [tensorflow](https://www.tensorflow.org) 1.8 with cpu support
 5. [keras](https://github.com/keras-team/keras) 2.2
+
+Links:
+[https://hub.docker.com/r/yantonov/dl-cpu/](hub.docker.com/r/yantonov/dl-cpu)
