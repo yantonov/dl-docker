@@ -11,7 +11,7 @@ ENV PATH $CONDA_DIR/bin:$PATH
 
 # install tensorflow
 RUN /opt/conda/bin/pip install --ignore-installed --upgrade \
-    https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl
+    https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.9.0-cp36-cp36m-linux_x86_64.whl
 
 # Install Python packages and keras
 ENV NB_USER keras
