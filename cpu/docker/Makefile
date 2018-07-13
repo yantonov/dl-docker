@@ -16,7 +16,9 @@ build:
 
 notebook:
 	mkdir -p $(DATA)
-	docker run -i -t \
+	docker run \
+		--hostname localhost \
+		-i -t \
 		-p 8888:8888 \
 		-v "$(SRC):/src/workspace" \
 		-v "$(DATA):/data" \
@@ -26,7 +28,7 @@ notebook:
 		/bin/bash -c \
 		"jupyter notebook \
 		--notebook-dir=/src/workspace \
-		--ip='*' \
+		--ip=0.0.0.0 \
 		--port=8888 \
 		--no-browser"
 
