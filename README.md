@@ -14,4 +14,4 @@ Docker file provides:
 5. [jupiter](http://jupyter.org/)
 
 Links:
-[https://hub.docker.com/r/yantonov/dl-cpu/](hub.docker.com/r/yantonov/dl-cpu)
+[hub.docker.com](https://hub.docker.com/r/yantonov/dl-cpu)
