@@ -9,9 +9,12 @@ RUN /opt/conda/bin/pip install --upgrade pip && \
 ENV CONDA_DIR /opt/conda
 ENV PATH $CONDA_DIR/bin:$PATH
 
+# downgrade to python 3.6
+RUN /opt/conda/bin/conda install python=3.6.6
+
 # install tensorflow
 RUN /opt/conda/bin/pip install --ignore-installed --upgrade \
-    https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.9.0-cp36-cp36m-linux_x86_64.whl
+     https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.11.0-cp36-cp36m-linux_x86_64.whl
 
 # Install Python packages and keras
 ENV NB_USER keras
