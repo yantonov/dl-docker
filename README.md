@@ -7,10 +7,10 @@ Add 'cpu' repository to PATH and use dl.sh.
 Current directory will be mounted automatically.
 
 Docker file provides:
-1. [python](https://www.python.org/download/releases/3.0/) 3.6.4
-2. [tensorflow](https://www.tensorflow.org) 1.9.0
-3. [keras](https://github.com/keras-team/keras) 2.2.0
-4. [anaconda](https://anaconda.org/anaconda/python) 5.2.0
+1. [python](https://www.python.org/download/releases/3.0/) 3.6.6
+2. [tensorflow](https://www.tensorflow.org) 1.11.0
+3. [keras](https://github.com/keras-team/keras) 2.2.3
+4. [anaconda](https://anaconda.org/anaconda/python) 4.5.11 (conda -V)
 5. [jupiter](http://jupyter.org/)
 
 Links:
