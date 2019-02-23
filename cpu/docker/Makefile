@@ -20,6 +20,7 @@ notebook:
 		--hostname localhost \
 		-i -t \
 		-p 8888:8888 \
+		-p 6006:6006 \
 		-v "$(SRC):/src/workspace" \
 		-v "$(DATA):/data" \
 		--env KERAS_BACKEND=$(BACKEND) \
@@ -33,7 +34,7 @@ notebook:
 		--no-browser"
 
 ssh:
-	docker run --rm -t -i "$(IMAGE)" bash
+	docker run --rm -u 0 -t -i "$(IMAGE)" bash
 
 stop:
 	docker stop "$(shell docker ps -a --filter "ancestor=$(IMAGE)" --format '{{.ID}}' | head -n 1 || echo "")"
