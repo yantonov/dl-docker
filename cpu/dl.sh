@@ -1,9 +1,7 @@
 #!/bin/sh
 
-export SRC="$(pwd)"
+cd "$(dirname "$0")/docker"
 
-cd "$(dirname "$0")"
+COMMAND="${1:-lab}"
 
-cd docker
-
-make notebook
+make "$COMMAND"
