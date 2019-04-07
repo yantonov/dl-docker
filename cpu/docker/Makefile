@@ -33,6 +33,25 @@ notebook:
 		--port=8888 \
 		--no-browser"
 
+lab:
+	mkdir -p $(DATA)
+	docker run \
+		--hostname localhost \
+		-i -t \
+		-p 8888:8888 \
+		-p 6006:6006 \
+		-v "$(SRC):/src/workspace" \
+		-v "$(DATA):/data" \
+		--env KERAS_BACKEND=$(BACKEND) \
+		--rm \
+		$(IMAGE) \
+		/bin/bash -c \
+		"/opt/conda/bin/jupyter lab \
+		--notebook-dir=/src/workspace \
+		--ip=0.0.0.0 \
+		--port=8888 \
+		--no-browser"
+
 ssh:
 	docker run --rm -u 0 -t -i "$(IMAGE)" bash
 

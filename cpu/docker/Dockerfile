@@ -3,20 +3,27 @@ FROM continuumio/anaconda3
 MAINTAINER Yury Antonov <yantonov@yandex.ru>
 
 RUN /opt/conda/bin/pip install --upgrade pip && \
-    /opt/conda/bin/conda update conda -y && \
-    /opt/conda/bin/conda install jupyter -y
+    /opt/conda/bin/conda update conda -y
+
+# line below is needed to install catboost, jupiterlab
+RUN /opt/conda/bin/conda config --add channels conda-forge
 
 ENV CONDA_DIR /opt/conda
 ENV PATH $CONDA_DIR/bin:$PATH
 
-# downgrade to python 3.6
+# Install tensorflow
+# Downgrade to python 3.6
 RUN /opt/conda/bin/conda install python=3.6.6
-
-# install tensorflow
+# install
 RUN /opt/conda/bin/pip install --ignore-installed --upgrade \
-     https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.11.0-cp36-cp36m-linux_x86_64.whl
+     https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.13.1-cp36-cp36m-linux_x86_64.whl
 
-# Install Python packages and keras
+# Install python packages and keras
+ADD conda_requirements.txt /
+RUN /opt/conda/bin/conda install -y --file conda_requirements.txt
+ADD requirements.txt /
+RUN /opt/conda/bin/pip install -r requirements.txt
+
 ENV NB_USER keras
 ENV NB_UID 1000
 
@@ -27,8 +34,12 @@ RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
 
 USER $NB_USER
 
-RUN /opt/conda/bin/pip install keras
+ENV JUPITER_PORT 8888
+RUN jupyter notebook --generate-config
 
-EXPOSE 8888
+# jupiter configuration
+RUN echo "c.NotebookApp.ip = '*'"               >> /home/$R_USER/.jupyter/jupyter_notebook_config.py
+RUN echo "c.NotebookApp.port = ${JUPITER_PORT}" >> /home/$R_USER/.jupyter/jupyter_notebook_config.py
+RUN echo "c.NotebookApp.token = ''"             >> /home/$R_USER/.jupyter/jupyter_notebook_config.py
 
-CMD /opt/conda/bin/jupyter notebook --port=8888 --ip='*' --no-browser --notebook-dir=/src
+EXPOSE $JUPITER_PORT
