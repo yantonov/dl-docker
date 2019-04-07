@@ -1,4 +1,4 @@
-FROM continuumio/anaconda3
+FROM yantonov/anaconda3
 
 MAINTAINER Yury Antonov <yantonov@yandex.ru>
 
@@ -8,9 +8,6 @@ RUN /opt/conda/bin/pip install --upgrade pip && \
 # line below is needed to install catboost, jupiterlab
 RUN /opt/conda/bin/conda config --add channels conda-forge
 RUN /opt/conda/bin/conda update -c conda-forge conda
-
-ENV CONDA_DIR /opt/conda
-ENV PATH $CONDA_DIR/bin:$PATH
 
 # Install tensorflow
 # Downgrade to python 3.6
@@ -44,3 +41,5 @@ RUN echo "c.NotebookApp.port = ${JUPITER_PORT}" >> /home/$R_USER/.jupyter/jupyte
 RUN echo "c.NotebookApp.token = ''"             >> /home/$R_USER/.jupyter/jupyter_notebook_config.py
 
 EXPOSE $JUPITER_PORT
+
+CMD ['/bin/bash']
