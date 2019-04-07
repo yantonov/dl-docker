@@ -7,6 +7,7 @@ RUN /opt/conda/bin/pip install --upgrade pip && \
 
 # line below is needed to install catboost, jupiterlab
 RUN /opt/conda/bin/conda config --add channels conda-forge
+RUN /opt/conda/bin/conda update -c conda-forge conda
 
 ENV CONDA_DIR /opt/conda
 ENV PATH $CONDA_DIR/bin:$PATH
