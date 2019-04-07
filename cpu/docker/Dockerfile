@@ -24,15 +24,15 @@ RUN /opt/conda/bin/conda install -y --file conda_requirements.txt
 ADD requirements.txt /
 RUN /opt/conda/bin/pip install -r requirements.txt
 
-ENV NB_USER keras
-ENV NB_UID 1000
+ENV R_USER keras
+ENV R_UID 1000
 
-RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
-    chown $NB_USER $CONDA_DIR -R && \
+RUN useradd -m -s /bin/bash -N -u $R_UID $R_USER && \
+    chown $R_USER $CONDA_DIR -R && \
     mkdir -p /src && \
-    chown $NB_USER /src
+    chown $R_USER /src
 
-USER $NB_USER
+USER $R_USER
 
 ENV JUPITER_PORT 8888
 RUN jupyter notebook --generate-config
