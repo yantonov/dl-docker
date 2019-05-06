@@ -28,7 +28,6 @@ notebook:
 		--env KERAS_BACKEND=$(BACKEND) \
 		--rm \
 		$(IMAGE) \
-		/bin/bash -c \
 		"jupyter notebook \
 		--notebook-dir=$(CONTAINER_SRC) \
 		--ip=0.0.0.0 \
@@ -47,8 +46,7 @@ lab:
 		--env KERAS_BACKEND=$(BACKEND) \
 		--rm \
 		$(IMAGE) \
-		/bin/bash -c \
-		"/opt/conda/bin/jupyter lab \
+		"jupyter lab \
 		--notebook-dir=$(CONTAINER_SRC) \
 		--ip=0.0.0.0 \
 		--port=8888 \

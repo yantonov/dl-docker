@@ -5,12 +5,9 @@ MAINTAINER Yury Antonov <yantonov@yandex.ru>
 # Downgrade to python 3.6
 RUN conda install python=3.6.6
 
-RUN pip install --upgrade pip && \
-    conda update conda -y
-
 # line below is needed to install catboost, jupiterlab
-RUN conda config --add channels conda-forge
-RUN conda update -c conda-forge conda
+RUN conda config --add channels conda-forge && \
+    conda update -c conda-forge conda
 
 # install
 RUN pip install --ignore-installed --upgrade \
@@ -20,6 +17,14 @@ RUN pip install --ignore-installed --upgrade \
 ADD files/conda_requirements.txt /
 RUN conda install -y --file /conda_requirements.txt
 ADD files/requirements.txt /
-RUN bin/pip install -r /requirements.txt
+RUN pip install -r /requirements.txt
+
+USER root
+
+# used by keras visualization utilities
+RUN apt-get install -y \
+    graphviz
+
+USER ${MY_USER}
 
 RUN conda clean --packages
