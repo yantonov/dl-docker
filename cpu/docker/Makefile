@@ -5,6 +5,8 @@ DATA?="${HOME}/Data"
 DOCKER_FILE=Dockerfile
 BACKEND=tensorflow
 SRC?=$(shell pwd)
+CONTAINER_SRC=/src/workspace
+CONTAINER_DATA=/data
 
 IMAGE=yantonov/dl-cpu
 
@@ -21,14 +23,14 @@ notebook:
 		-i -t \
 		-p 8888:8888 \
 		-p 6006:6006 \
-		-v "$(SRC):/src/workspace" \
-		-v "$(DATA):/data" \
+		-v "$(SRC):$(CONTAINER_SRC)" \
+		-v "$(DATA):$(CONTAINER_DATA)" \
 		--env KERAS_BACKEND=$(BACKEND) \
 		--rm \
 		$(IMAGE) \
 		/bin/bash -c \
 		"jupyter notebook \
-		--notebook-dir=/src/workspace \
+		--notebook-dir=$(CONTAINER_SRC) \
 		--ip=0.0.0.0 \
 		--port=8888 \
 		--no-browser"
@@ -40,14 +42,14 @@ lab:
 		-i -t \
 		-p 8888:8888 \
 		-p 6006:6006 \
-		-v "$(SRC):/src/workspace" \
-		-v "$(DATA):/data" \
+		-v "$(SRC):$(CONTAINER_SRC)" \
+		-v "$(DATA):$(CONTAINER_DATA)" \
 		--env KERAS_BACKEND=$(BACKEND) \
 		--rm \
 		$(IMAGE) \
 		/bin/bash -c \
 		"/opt/conda/bin/jupyter lab \
-		--notebook-dir=/src/workspace \
+		--notebook-dir=$(CONTAINER_SRC) \
 		--ip=0.0.0.0 \
 		--port=8888 \
 		--no-browser"
