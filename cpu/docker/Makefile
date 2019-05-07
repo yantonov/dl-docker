@@ -7,6 +7,8 @@ BACKEND=tensorflow
 SRC?=$(shell pwd)
 CONTAINER_SRC=/src/workspace
 CONTAINER_DATA=/data
+JUPITER_PORT?=8888
+TENSORBOARD_PORT?=6006
 
 IMAGE=yantonov/dl-cpu
 
@@ -21,8 +23,8 @@ notebook:
 	docker run \
 		--hostname localhost \
 		-i -t \
-		-p 8888:8888 \
-		-p 6006:6006 \
+		-p $(JUPITER_PORT):$(JUPITER_PORT) \
+		-p $(TENSORBOARD_PORT):$(TENSORBOARD_PORT) \
 		-v "$(SRC):$(CONTAINER_SRC)" \
 		-v "$(DATA):$(CONTAINER_DATA)" \
 		--env KERAS_BACKEND=$(BACKEND) \
@@ -31,7 +33,7 @@ notebook:
 		"jupyter notebook \
 		--notebook-dir=$(CONTAINER_SRC) \
 		--ip=0.0.0.0 \
-		--port=8888 \
+		--port=$(JUPITER_PORT) \
 		--no-browser"
 
 lab:
@@ -39,8 +41,8 @@ lab:
 	docker run \
 		--hostname localhost \
 		-i -t \
-		-p 8888:8888 \
-		-p 6006:6006 \
+		-p $(JUPITER_EXPOSED_PORT):$(JUPITER_PORT) \
+		-p $(TENSORBOARD_PORT):$(TENSORBOARD_PORT) \
 		-v "$(SRC):$(CONTAINER_SRC)" \
 		-v "$(DATA):$(CONTAINER_DATA)" \
 		--env KERAS_BACKEND=$(BACKEND) \
@@ -49,7 +51,7 @@ lab:
 		"jupyter lab \
 		--notebook-dir=$(CONTAINER_SRC) \
 		--ip=0.0.0.0 \
-		--port=8888 \
+		--port=$(JUPITER_PORT) \
 		--no-browser"
 
 ssh:
