@@ -16,7 +16,5 @@ RUN pip install -r /requirements.txt
 RUN conda clean --packages
 
 # used by keras visualization utilities
-USER root
 RUN apt-get install -y \
     graphviz
-USER ${MY_USER}
