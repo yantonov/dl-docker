@@ -1,9 +1,9 @@
-FROM yantonov/anaconda3
+FROM yantonov/anaconda3:2020.02
 
 MAINTAINER Yury Antonov <yantonov@yandex.ru>
 
-RUN pip install --ignore-installed --upgrade \
-     https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.14.0-cp37-cp37m-linux_x86_64.whl
+RUN /opt/conda/bin/pip install --ignore-installed \
+     https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow_cpu-2.3.0-cp37-cp37m-manylinux2010_x86_64.whl
 
 ADD files/conda_requirements.txt /
 RUN conda install -y --file /conda_requirements.txt
